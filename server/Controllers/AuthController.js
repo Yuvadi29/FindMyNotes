@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const User = require("../Models/User");
-// const jwt = require("jsonwebtoken"); //Sign Tokens
+const jwt = require("jsonwebtoken"); //Sign Tokens
 const bcrypt = require("bcrypt"); //Hash passwords
 
 dotenv.config();
@@ -11,6 +11,14 @@ const router = express.Router(); //Create router to create router bundle
 // Signup Route
 router.post("/signup", async (req, res) => {
     try {
+
+        const { firstName, lastName, userBio, gender, userEmail, userMobile, userName, userPassword } = req.body;
+
+        const existingUser = await User.findOne({ userEmail });
+        if (existingUser) {
+            res.status(401).send("User Already Exists with this Email");
+        }
+
         const password = req.body.userPassword;
         const saltRounds = 10;
 
@@ -20,22 +28,24 @@ router.post("/signup", async (req, res) => {
 
         console.log("Request Body: ", req.body);
         const newUser = new User({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            userBio: req.body.userBio,
-            gender: req.body.gender,
-            userEmail: req.body.userEmail,
-            userMobile: req.body.userMobile,
-            userName: req.body.userName,
+            firstName,
+            lastName,
+            userBio,
+            gender,
+            userEmail,
+            userMobile,
+            userName,
             userPassword: encryptPassword,
         });
 
+
         await newUser.save();
 
-        console.log(newUser);
-        res.json({ status: 'Ok' });
+        res.status(201).json(newUser);
+
+        res.json({ status: 'Ok', user: newUser });
     } catch (error) {
-        res.status(400).json({ error });
+        res.status(400).json({ error: error.message });
         console.log(error);
     }
 });
