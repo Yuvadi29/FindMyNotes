@@ -1,8 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const User = require("../Models/User");
-// const bcrypt = require("bcrypt"); //Hash passwords
 // const jwt = require("jsonwebtoken"); //Sign Tokens
+const bcrypt = require("bcrypt"); //Hash passwords
 
 dotenv.config();
 
@@ -11,12 +11,12 @@ const router = express.Router(); //Create router to create router bundle
 // Signup Route
 router.post("/signup", async (req, res) => {
     try {
-        // const password = req.body.password;
-        // const saltRounds = 10;
+        const password = req.body.userPassword;
+        const saltRounds = 10;
 
-        // const salt = await bcrypt.genSalt(saltRounds);
+        const salt = await bcrypt.genSalt(saltRounds);
 
-        // const encryptPassword = await bcrypt.hash(password, salt);
+        const encryptPassword = await bcrypt.hash(password, salt);
 
         console.log("Request Body: ", req.body);
         const newUser = new User({
@@ -27,7 +27,7 @@ router.post("/signup", async (req, res) => {
             userEmail: req.body.userEmail,
             userMobile: req.body.userMobile,
             userName: req.body.userName,
-            userPassword: req.body.userPassword,
+            userPassword: encryptPassword,
         });
 
         await newUser.save();
@@ -43,18 +43,24 @@ router.post("/signup", async (req, res) => {
 // Login Route
 router.post("/login", async (req, res) => {
     try {
-        const getUser = await User.findOne({
-            userEmail: req.body.userEmail,
-            userPassword: req.body.userPassword,
-        });
 
-        if (getUser) {
-            return res.json({ status: "OK", getUser: true })
+        const { userEmail, userPassword } = req.body;
+
+        const user = await User.findOne({ userEmail });
+
+        if (user) {
+            const passwordMatch = await bcrypt.compare(userPassword, user.userPassword);
+            if (passwordMatch) {
+                return res.json({ status: "OK", getUser: true })
+            } else {
+                return res.json({ status: "Error", getUser: false })
+            }
         } else {
-            return res.json({ status: "Error", getUser: false })
+            return res.json({ status: "Error", getUser: false });
         }
+
     } catch (error) {
-        res.status(400).json({ error });
+        res.status(400).json({ error: error.message });
     }
 });
 
