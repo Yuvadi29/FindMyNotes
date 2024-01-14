@@ -26,7 +26,7 @@ const uploadNote = async (req, res) => {
         });
 
         await newFile.save();
-        res.send({status: "Ok"})
+        res.send({ status: "Ok" })
 
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -34,4 +34,15 @@ const uploadNote = async (req, res) => {
     }
 };
 
-module.exports = { uploadNote };
+
+const getNote = async (req, res) => {
+    try {
+        await Notes.find({}).then(data => {
+            res.send({ status: "ok", data: data });
+        })
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+module.exports = { uploadNote, getNote };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 
 const UploadNote = () => {
@@ -6,6 +6,21 @@ const UploadNote = () => {
     const [description, setDescription] = useState("");
     const [tags, setTags] = useState("");
     const [file, setFile] = useState("");
+    const [allFiles, setAllFiles] = useState("");
+
+
+    useEffect(() => {
+        getFiles();
+    });
+
+    const getFiles = async () => {
+        try {
+            const result = await axios.get("http://localhost:7000/notes/getFiles");
+            setAllFiles(result.data.data);
+        } catch (error) {
+            console.error("Error fetching files:", error);
+        }
+    }
 
     const submitFile = async (e) => {
         e.preventDefault();
@@ -23,6 +38,10 @@ const UploadNote = () => {
             },
         });
         console.log("Frontnd Data: ", result);
+    }
+
+    const showPDF = (files) => {
+        window.open(`http://localhost:7000/files/${files}`, "_blank", "noreferrer");
     }
 
     return (
@@ -69,6 +88,18 @@ const UploadNote = () => {
 
                 <button type='submit'>Submit</button>
             </form>
+
+            <div>
+                <h4>Uploaded Files</h4>
+                {allFiles.length === 0
+                    ? "No files uploaded yet."
+                    : allFiles.map((data) => (
+                        <>
+                            <h6 key={data._id}>File: {data.fileName}</h6>
+                            <button onClick={() => showPDF(data.files)}>Show PDF</button>
+                        </>
+                    ))}
+            </div>
         </div>
     )
 }

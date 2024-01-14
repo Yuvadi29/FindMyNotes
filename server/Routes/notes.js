@@ -5,7 +5,7 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const destinationPath = "../files";
+        const destinationPath = "./files";
         cb(null, destinationPath);
     },
     filename: function (req, file, cb) {
@@ -18,5 +18,6 @@ const upload = multer({ storage: storage })
 
 // Upload Route
 router.post("/upload", upload.single("file"), NotesController.uploadNote);
+router.get("/getFiles", NotesController.getNote);
 
 module.exports = router;
