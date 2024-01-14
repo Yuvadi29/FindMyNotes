@@ -17,15 +17,13 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    dateOfBirth: {
-        type: Date,
-    },
     userEmail: {
         type: String,
         required: true,
     },
     userMobile: {
         type: Number,
+        required: true,
     },
     userName: {
         type: String,
