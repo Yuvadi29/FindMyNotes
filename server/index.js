@@ -3,8 +3,11 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
+const multer = require("multer");
+const path = require("path");
 
 const authRoutes = require("./Routes/auth");
+const noteRoutes = require("./Routes/notes");
 
 const app = express();
 const PORT = 7000;
@@ -23,9 +26,11 @@ try {
 
 app.get("/", (req, res) => {
     res.send("Server is Working");
-})
+});
+
 
 app.use("/auth", authRoutes);
+app.use("/notes", noteRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server Running on Port ${PORT}`);

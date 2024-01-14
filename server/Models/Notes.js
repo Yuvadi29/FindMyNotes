@@ -15,11 +15,15 @@ const NoteSchema = mongoose.Schema({
         required: true,
     },
     file: {
-        data: Buffer,
-        contentType: String,
-        required: true,
+        data: {
+            type: Buffer,
+            required: true,
+        },
+        contentType: {
+            type: String,
+            required: true,
+        },
     },
-
 });
 
 module.exports = mongoose.model("Notes", NoteSchema);
