@@ -11,18 +11,12 @@ const NoteSchema = mongoose.Schema({
         required: true,
     },
     tags: {
-        type: Array,
+        type: String,
         required: true,
     },
-    file: {
-        data: {
-            type: Buffer,
-            required: true,
-        },
-        contentType: {
-            type: String,
-            required: true,
-        },
+    files: {
+        type: String,
+        required: true,
     },
 });
 

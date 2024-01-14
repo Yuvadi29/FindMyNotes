@@ -4,7 +4,6 @@ const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const multer = require("multer");
-const path = require("path");
 
 const authRoutes = require("./Routes/auth");
 const noteRoutes = require("./Routes/notes");
@@ -15,6 +14,9 @@ const PORT = 7000;
 dotenv.config();
 app.use(cors());
 app.use(bodyParser.json());
+
+// Multer configuration
+
 app.use(express.json());
 
 try {
@@ -31,6 +33,7 @@ app.get("/", (req, res) => {
 
 app.use("/auth", authRoutes);
 app.use("/notes", noteRoutes);
+app.use("/files", express.static("files"));
 
 app.listen(PORT, () => {
     console.log(`Server Running on Port ${PORT}`);
