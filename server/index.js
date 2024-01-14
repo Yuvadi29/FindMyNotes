@@ -4,7 +4,7 @@ const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const UserRouter = require("./Controllers/AuthController");
+const authRoutes = require("./Routes/auth");
 
 const app = express();
 const PORT = 7000;
@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
     res.send("Server is Working");
 })
 
-app.use("/auth", UserRouter);
+app.use("/auth", authRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server Running on Port ${PORT}`);

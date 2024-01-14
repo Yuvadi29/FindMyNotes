@@ -9,7 +9,8 @@ dotenv.config();
 const router = express.Router(); //Create router to create router bundle
 
 // Signup Route
-router.post("/signup", async (req, res) => {
+// router.post("/signup", async (req, res) => {
+const signup = async (req, res) => {
     try {
 
         const { firstName, lastName, userBio, gender, userEmail, userMobile, userName, userPassword } = req.body;
@@ -41,17 +42,16 @@ router.post("/signup", async (req, res) => {
 
         await newUser.save();
 
-        res.status(201).json(newUser);
-
-        res.json({ status: 'Ok', user: newUser });
+        return res.status(201).json({ status: 'Ok', user: newUser });
     } catch (error) {
         res.status(400).json({ error: error.message });
         console.log(error);
     }
-});
+};
 
 // Login Route
-router.post("/login", async (req, res) => {
+// router.post("/login", async (req, res) => {
+const login = async (req, res) => {
     try {
 
         const { userEmail, userPassword } = req.body;
@@ -72,6 +72,6 @@ router.post("/login", async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
-});
+};
 
-module.exports = router;
+module.exports = { signup, login };
