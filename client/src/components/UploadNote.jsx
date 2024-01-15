@@ -47,46 +47,81 @@ const UploadNote = () => {
     return (
         <div>
             <form onSubmit={submitFile}>
-                <h4>Upload PDF</h4>
+                <p className='justify-center items-center flex text-3xl'>Navbar</p>
                 <br />
 
-                <input
-                    type="text"
-                    placeholder='Title'
-                    required
-                    onChange={(e) => setTitle(e.target.value)}
-                />
+                <div className="justify-center min-h-[90vh] pt-[20px] pr-0 pb-[20px] pl-0 flex flex-col items-center border-2 border-red-600">
 
-                <br />
-
-                <input
-                    type="text"
-                    placeholder='Description'
-                    required
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-
-                <br />
-
-                <input
-                    type="text"
-                    placeholder='Tags'
-                    required
-                    onChange={(e) => setTags(e.target.value)}
-                />
-                <br />
+                    <div className="pt-[2vh] pb-[2vh] pr-0 pl-0 items-center m-0 text-[#094166] font-bold">Upload Your Notes</div>
 
 
-                <input
-                    type="file"
-                    placeholder='File'
-                    accept='application/pdf'
-                    required
-                    onChange={(e) => setFile(e.target.files[0])}
-                />
-                <br />
+                    <div className="relative">
+                        <input
+                            type="text"
+                            placeholder='Title'
+                            required
+                            onChange={(e) => setTitle(e.target.value)}
+                            className='h-[40px] border-1 border-blue-950 rounded-[3px] pt-0 pb-0 pl-[15px] pr-[15px] text-md'
 
-                <button type='submit'>Submit</button>
+                        />
+
+                        <br />
+
+                        <input
+                            type="text"
+                            placeholder='Description'
+                            required
+                            onChange={(e) => setDescription(e.target.value)}
+                            className='h-[40px] border-1 border-blue-950 rounded-[3px] pt-0 pb-0 pl-[15px] pr-[15px] text-md'
+                        />
+
+                        <br />
+
+                        <input
+                            type="text"
+                            placeholder='Tags'
+                            required
+                            onChange={(e) => setTags(e.target.value)}
+                            className='h-[40px] border-1 border-blue-950 rounded-[3px] pt-0 pb-0 pl-[15px] pr-[15px] text-md'
+                        />
+                        <br />
+
+
+                        <div className="flex items-center justify-center w-full">
+                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg className='w-8 h-8 mb-4 text-gray-500 ' aria-hidden="true" xmlns='http://www.w3.org/2000/svg'
+                                    fill='none'
+                                    viewBox='0 0 20 16'
+                                >
+                                    <path stroke='currentColor' strokeLinecap='round'
+                                        strokeLinejoin='round'
+                                        strokeWidth="2"
+                                        d='M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2 '
+                                    />
+                                </svg>
+                                <p className="mb-2 text-sm text-gray-500">
+                                    <span className="font-semibold">
+                                        Click to Upload
+                                    </span> or drag and drop
+                                </p>
+                                <p className="text-xs text-gray-500">PDF</p>
+                                <input
+                                    type="file"
+                                    placeholder='File'
+                                    accept='application/pdf'
+                                    required
+                                    onChange={(e) => setFile(e.target.files[0])}
+                                    className='h-[40px] border-1 border-blue-950 rounded-[3px] pt-0 pb-0 pl-[15px] pr-[15px] text-md'
+                                />
+                            </div>
+                        </div>
+                        <br />
+
+                        <button type='submit' className='bg-[#0077b6ff] text-white rounded-lg justify-center items-center flex flex-col'>Upload</button>
+                    </div>
+
+                </div>
+
             </form>
 
             <div>
