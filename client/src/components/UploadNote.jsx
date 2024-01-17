@@ -23,21 +23,28 @@ const UploadNote = () => {
     }
 
     const submitFile = async (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("description", description);
-        formData.append("tags", tags);
-        formData.append("file", file);
 
-        console.log(title, description, tags, file);
+        try {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append("title", title);
+            formData.append("description", description);
+            formData.append("tags", tags);
+            formData.append("file", file);
 
-        const result = await axios.post("http://localhost:7000/notes/upload", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-        });
-        console.log("Frontnd Data: ", result);
+            console.log(title, description, tags, file);
+
+            const result = await axios.post("http://localhost:7000/notes/upload", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                },
+            });
+            console.log("Frontnd Data: ", result);
+            alert("Note Uploaded Successfully ");
+        } catch (error) {
+            console.log(error);
+            alert("Failed to Upload the Note");
+        }
     }
 
     const showPDF = (files) => {
@@ -49,13 +56,12 @@ const UploadNote = () => {
             <p className='justify-center items-center flex text-3xl'>Navbar</p>
             <br />
 
-            <form onSubmit={submitFile} className='max-w-sm mx-auto'>
+            <form onSubmit={submitFile} className='max-w-screen-md mx-auto'>
                 <div className="justify-center min-h-[90vh] pt-[20px] pr-0 pb-[20px] pl-0 flex flex-col items-center border-2 shadow-lg border-gray-600">
 
-                    <div className="pt-[2vh] pb-[2vh] pr-0 pl-0 items-center m-0 text-[#094166] font-bold">Upload Your Notes</div>
+                    <div className=" pb-[2vh] items-center m-0 text-[#094166] font-bold text-3xl">Upload Your Notes</div>
 
-
-                    <div className="relative ">
+                    <div className="relative w-[550px] ">
                         <div className="mb-5">
                             <input
                                 type="text"
@@ -89,7 +95,7 @@ const UploadNote = () => {
 
 
                         <div className="flex items-center justify-center w-full">
-                            <label for="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                            <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100  ">
 
                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                     <svg className='w-8 h-8 mb-4 text-gray-500 ' aria-hidden="true" xmlns='http://www.w3.org/2000/svg'
@@ -122,7 +128,14 @@ const UploadNote = () => {
                         </div>
                         <br />
 
-                        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 justify-center items-center">Submit</button>
+                        <button type='submit'>Submit</button>
+                        {/* <div className="relative inline-flex cursor-pointer items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group">
+                            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </span>
+                            <button type='submit' className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">Upload</button>
+                            <button type='submit' className="relative invisible">Upload</button>
+                        </div> */}
 
                     </div>
 
