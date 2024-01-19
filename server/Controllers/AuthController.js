@@ -13,7 +13,7 @@ const router = express.Router(); //Create router to create router bundle
 const signup = async (req, res) => {
     try {
 
-        const { firstName, lastName, userBio, gender, userEmail, userMobile, userName, userPassword } = req.body;
+        const { firstName, lastName, userBio, userEmail, userMobile, userName, userPassword } = req.body;
 
         const existingUser = await User.findOne({ userEmail });
         if (existingUser) {
@@ -32,7 +32,6 @@ const signup = async (req, res) => {
             firstName,
             lastName,
             userBio,
-            gender,
             userEmail,
             userMobile,
             userName,

@@ -8,12 +8,12 @@ const Header = () => {
 
   return (
     <div>
-      <header className="relative border-b-2 py-2 px-4 flex justify-between items-center">
-        <div className="w-28 h-[45px]  relative flex overflow-hidden justify-center items-centers">
+      <header className="relative flex items-center justify-between border-b-2 px-4 py-2">
+        <div className="items-centers relative  flex h-[45px] w-28 justify-center overflow-hidden">
           <img
             src="https://findmynotes.pythonanywhere.com/static/media/images/logo.png"
             alt="logo"
-            className="absolute w-full inset-0 m-auto"
+            className="absolute inset-0 m-auto w-full"
           />
         </div>
         {/* <div className="">
@@ -26,7 +26,7 @@ const Header = () => {
           <button className="">Login</button>
           <button className="">Signup</button>
         </div> */}
-        <div className="border flex justify-center items-center">
+        <div className="flex items-center justify-center border">
           <div className="hidden sm:block">
             <a href="" className="mr-4 font-semibold">
               Home
@@ -34,10 +34,10 @@ const Header = () => {
             <a href="" className="mr-4 font-semibold">
               About
             </a>
-            <button className="bg-blue-500 hover:bg-blue-600 px-5 py-2 rounded-xl font-bold mr-4">
+            <button className="mr-4 rounded-xl bg-blue-500 px-5 py-2 font-bold hover:bg-blue-600">
               Login
             </button>
-            <button className="bg-blue-500 px-5 py-2 rounded-xl font-bold ">
+            <button className="rounded-xl bg-blue-500 px-5 py-2 font-bold ">
               Signup
             </button>
           </div>
@@ -51,20 +51,20 @@ const Header = () => {
           </div>
         </div>
         {isNavbarActive ? (
-          <div className="absolute bg-[#f6f8fc] py-3 right-0 left-0 top-full">
-            <div className="flex h-full justify-around scale-90 items-center uppercase font-bold">
-              <a href="" className="flex justify-center items-center">
+          <div className="absolute left-0 right-0 top-full bg-[#f6f8fc] py-3">
+            <div className="flex h-full scale-90 items-center justify-around font-bold uppercase">
+              <a href="" className="flex items-center justify-center">
                 <FaHome className="mr-2" />
                 <span>Home</span>
               </a>
-              <a href="" className="flex justify-center items-center">
+              <a href="" className="flex items-center justify-center">
                 <AiFillBulb className="mr-2" />
                 <span>About</span>
               </a>
-              <button className="bg-blue-500 hover:bg-blue-600 px-5 py-2 rounded-xl font-bold">
+              <button className="rounded-xl bg-blue-500 px-5 py-2 font-bold hover:bg-blue-600">
                 Login
               </button>
-              <button className="bg-blue-500 px-5 py-2 rounded-xl font-bold ">
+              <button className="rounded-xl bg-blue-500 px-5 py-2 font-bold ">
                 Signup
               </button>
             </div>
