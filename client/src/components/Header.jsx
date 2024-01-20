@@ -5,6 +5,7 @@ import { AiFillBulb } from "react-icons/ai";
 
 const Header = () => {
   const [isNavbarActive, setIsNavbarActive] = useState(false);
+  const [isUserSignedIn, setIsUserSignedIn] = useState(false); // Add state for user sign-in status
 
   return (
     <div>
@@ -16,16 +17,6 @@ const Header = () => {
             className="absolute inset-0 m-auto w-full"
           />
         </div>
-        {/* <div className="">
-          <a href="" className="">
-            Home
-          </a>
-          <a href="" className="">
-            About
-          </a>
-          <button className="">Login</button>
-          <button className="">Signup</button>
-        </div> */}
         <div className="flex items-center justify-center border">
           <div className="hidden sm:block">
             <a href="" className="mr-4 font-semibold">
@@ -34,12 +25,24 @@ const Header = () => {
             <a href="" className="mr-4 font-semibold">
               About
             </a>
-            <button className="mr-4 rounded-xl bg-blue-500 px-5 py-2 font-bold hover:bg-blue-600">
-              Login
-            </button>
-            <button className="rounded-xl bg-blue-500 px-5 py-2 font-bold ">
-              Signup
-            </button>
+            {isUserSignedIn ? ( // Conditionally render based on user sign-in status
+              <button className="mr-4 rounded-xl bg-blue-500 px-5 py-2 font-bold hover:bg-blue-600">
+                Profile
+              </button>
+            ) : (
+              <>
+                <a href="/login">
+                  <button className="mr-4 rounded-xl bg-blue-500 px-5 py-2 font-bold hover:bg-blue-600">
+                    Login
+                  </button>
+                </a>
+                <a href="/signup">
+                  <button className="rounded-xl bg-blue-500 px-5 py-2 font-bold ">
+                    Signup
+                  </button>
+                </a>
+              </>
+            )}
           </div>
           <div
             onClick={() => {
@@ -61,12 +64,25 @@ const Header = () => {
                 <AiFillBulb className="mr-2" />
                 <span>About</span>
               </a>
-              <button className="rounded-xl bg-blue-500 px-5 py-2 font-bold hover:bg-blue-600">
-                Login
-              </button>
-              <button className="rounded-xl bg-blue-500 px-5 py-2 font-bold ">
-                Signup
-              </button>
+              {isUserSignedIn ? ( // Conditionally render based on user sign-in status
+                <button className="rounded-xl bg-blue-500 px-5 py-2 font-bold hover:bg-blue-600">
+                  Profile
+                </button>
+              ) : (
+                <>
+                  <a href="/login">
+                    <button className="rounded-xl bg-blue-500 px-5 py-2 font-bold hover:bg-blue-600">
+                      Login
+                    </button>
+                  </a>
+
+                  <a href="/signup">
+                    <button className="rounded-xl bg-blue-500 px-5 py-2 font-bold ">
+                      Signup
+                    </button>
+                  </a>
+                </>
+              )}
             </div>
           </div>
         ) : null}
