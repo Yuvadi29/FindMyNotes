@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { useSelector } from 'react-redux';
+
 
 const UploadNote = () => {
     const [title, setTitle] = useState("");
@@ -8,6 +10,9 @@ const UploadNote = () => {
     const [file, setFile] = useState("");
     const [allFiles, setAllFiles] = useState("");
 
+    const user = useSelector((state) => state.user.userData);
+
+    const userId = user._id;
 
     useEffect(() => {
         getFiles();
@@ -31,15 +36,16 @@ const UploadNote = () => {
             formData.append("description", description);
             formData.append("tags", tags);
             formData.append("file", file);
+            formData.append("userId", userId);
 
-            console.log(title, description, tags, file);
+            console.log(title, description, tags, file, userId);
 
             const result = await axios.post("http://localhost:7000/notes/upload", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 },
             });
-            console.log("Frontnd Data: ", result);
+            console.log("Frontend Data: ", result);
             alert("Note Uploaded Successfully ");
         } catch (error) {
             console.log(error);
@@ -53,9 +59,6 @@ const UploadNote = () => {
 
     return (
         <div>
-            <p className='justify-center items-center flex text-3xl'>Navbar</p>
-            <br />
-
             <form onSubmit={submitFile} className='max-w-screen-md mx-auto'>
                 <div className="justify-center min-h-[90vh] pt-[20px] pr-0 pb-[20px] pl-0 flex flex-col items-center border-2 shadow-lg border-gray-600">
 

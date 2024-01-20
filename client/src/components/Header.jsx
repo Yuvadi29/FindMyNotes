@@ -29,11 +29,13 @@ const Header = () => {
     <div>
       <header className="relative flex items-center justify-between border-b-2 px-4 py-2">
         <div className="items-centers relative  flex h-[45px] w-28 justify-center overflow-hidden">
-          <img
-            src="https://findmynotes.pythonanywhere.com/static/media/images/logo.png"
-            alt="logo"
-            className="absolute inset-0 m-auto w-full"
-          />
+          <Link to='/'>
+            <img
+              src="https://findmynotes.pythonanywhere.com/static/media/images/logo.png"
+              alt="logo"
+              className="absolute inset-0 m-auto w-full"
+            />
+          </Link>
         </div>
         <div className="flex items-center justify-center border">
           <div className="hidden sm:block">
@@ -52,7 +54,6 @@ const Header = () => {
                   <button className="mr-4 rounded-xl bg-blue-500 px-5 py-2 font-bold hover:bg-blue-600">
                     Profile
                   </button>
-                  {user.userName}
                 </Link>
                 <button className="mr-4 rounded-xl bg-blue-500 px-5 py-2 font-bold hover:bg-blue-600" onClick={handleLogout}>
                   Logout
@@ -82,7 +83,7 @@ const Header = () => {
             <RxHamburgerMenu className="text-xl sm:hidden" />
           </div>
         </div>
-        {isAuthenticated ? (
+        {/* {isAuthenticated ? (
           <div className="absolute left-0 right-0 top-full bg-[#f6f8fc] py-3">
             <div className="flex h-full scale-90 items-center justify-around font-bold uppercase">
               <Link to="" className="flex items-center justify-center">
@@ -114,7 +115,7 @@ const Header = () => {
               )}
             </div>
           </div>
-        ) : null}
+        ) : null} */}
       </header>
     </div>
   );

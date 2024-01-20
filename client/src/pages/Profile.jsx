@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Profile = () => {
+  const user = useSelector((state) => state.user.userData);
+
+  const [userFiles, setUserFiles] = useState([]);
+
+  const userId = user._id;
+  console.log(userId);
+
+  useEffect(() => {
+    const getUserFiles = async () => {
+      const result = await axios.get("http://localhost:7000/notes/getFiles");
+      console.log(result.data);
+    }
+
+    getUserFiles();
+  }, [userId])
+
   return (
     <div className="flex flex-col items-center justify-center border border-red-500 lg:h-heightWithoutNavbar lg:flex-row">
       {/* section 1 */}
@@ -14,13 +32,13 @@ const Profile = () => {
         <div className="mx-10  max-w-[740px]">
           <div className=" my-2 flex flex-col items-center justify-center ">
             <h2 className="text-2xl font-black">
-              <span>Aditya</span> <span>Trivedi</span>
+              <span>{user.firstName}</span> <span>{user.lastName}</span>
             </h2>
             <p className="mt-1 text-center">
-              "I'm Aditya Trivedi, and I recently graduated with an advanced
-              diploma from Smith secondary school. I'm seeking an internship
-              where I can apply my skills in content creation and increase my
-              experience in digital marketing."
+              {user.userName}
+            </p>
+            <p className="mt-1 text-center">
+              {user.userBio}
             </p>
           </div>
           {/* counts */}
@@ -29,7 +47,7 @@ const Profile = () => {
               <p className="text-center text-[12px] font-bold">
                 No. of Uploads :
               </p>
-              <p className="text-center text-5xl font-black">10</p>
+              <p className="text-center text-5xl font-black"></p>
             </div>
             <span className="h-[60px] w-[1px] bg-gray-400" />
             <div className="grid h-[80px] w-[100px] place-content-center">

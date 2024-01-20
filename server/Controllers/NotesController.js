@@ -18,11 +18,15 @@ const uploadNote = async (req, res) => {
         const tags = req.body.tags;
         const file = req.file.filename;
 
+        const uploadedBy = req.body.userId;
+        console.log(uploadedBy);
+
         const newFile = new Notes({
             fileName: fileName,
             fileDescription: fileDescription,
             tags: tags,
-            files: file
+            files: file,
+            uploadedBy: uploadedBy
         });
 
         await newFile.save();
@@ -37,6 +41,10 @@ const uploadNote = async (req, res) => {
 
 const getNote = async (req, res) => {
     try {
+
+        const uploadedBy = req.body;
+        console.log(uploadedBy);
+
         await Notes.find({}).then(data => {
             res.send({ status: "ok", data: data });
         })
