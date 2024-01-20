@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       spacing: {
-        heroSectionHeight: "calc(100vh - 60px)",
+        heightWithoutNavbar: "calc(100vh - 60px)",
       },
       backgroundImage: {
         unsplashBgImage: "url('/img/bgImg.jpg')",
