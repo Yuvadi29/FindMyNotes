@@ -22,6 +22,9 @@ const Login = () => {
 
       const result = await axios.post("http://localhost:7000/auth/login", user);
       console.log("User Logged In Successfully: ", result);
+      console.log(result.data);
+
+
       dispatch(setUserData(result.data));
       alert("User Logged In Successfully");
       navigate("/");

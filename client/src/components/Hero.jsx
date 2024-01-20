@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Hero = () => {
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
   return (
     <section className="h-heightWithoutNavbar relative flex items-center justify-center border border-black bg-unsplashBgImage bg-cover bg-center py-16 text-white">
       <div className="absolute inset-0 bg-black bg-opacity-70" />
@@ -17,12 +20,20 @@ const Hero = () => {
           notes work for you – discover a new era of innovation, start today
         </p>
         <div className="flex justify-center">
-          <button className="mr-10 rounded-xl bg-white px-6 py-3 text-lg font-bold text-blue-500 hover:bg-gray-100">
-            Login
-          </button>
-          <button className="rounded-xl bg-white px-6 py-3 text-lg font-bold text-blue-500 hover:bg-gray-100">
-            Signup
-          </button>
+          {isAuthenticated ? (
+            <>
+              <button className="mr-10 rounded-xl bg-white px-6 py-3 text-lg font-bold text-blue-500 hover:bg-gray-100">Get Started</button>
+            </>
+          ) : (
+            <>
+              <button className="mr-10 rounded-xl bg-white px-6 py-3 text-lg font-bold text-blue-500 hover:bg-gray-100">
+                Login
+              </button>
+              <button className="rounded-xl bg-white px-6 py-3 text-lg font-bold text-blue-500 hover:bg-gray-100">
+                Signup
+              </button>
+            </>
+          )}
         </div>
       </div>
     </section>
