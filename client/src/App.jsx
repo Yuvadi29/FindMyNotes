@@ -1,31 +1,48 @@
-import React from "react";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import FAQ from "./pages/FAQ";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
-import ForgotPassword from "./pages/Forgot-Password";
-import Upload from "./pages/Upload";
-import Profile from "./pages/Profile";
-import Search from "./pages/Search";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
+import React from 'react';
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './pages/Home';
+import About from './pages/About';
+import FAQ from './pages/FAQ';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import ForgotPassword from './pages/Forgot-Password';
+import Upload from './pages/Upload';
+import Profile from './pages/Profile';
+import Search from './pages/Search';
+import { useSelector } from 'react-redux';
 
 const App = () => {
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
   return (
     <Router>
+      {/* Include Header outside Routes */}
       <Header />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/signup" element={<SignUp />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/forgot-password" element={<ForgotPassword />} />
-        <Route exact path="/upload" element={<Upload />} />
-        <Route exact path="/profile" element={<Profile />} />
-        <Route exact path="/search" element={<Search />} />
-        <Route exact path="/about" element={<About />} />
-        <Route exact path="/faq" element={<FAQ />} />
-      </Routes>
+
+      {/* Use a div to wrap the routes */}
+      <div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+
+          {isAuthenticated ? (
+            <>
+              <Route path="/upload" element={<Upload />} />
+              <Route path="/profile" element={<Profile />} />
+            </>
+          ) : (
+            <>
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<Login />} />
+            </>
+          )}
+
+          <Route path="/search" element={<Search />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ />} />
+        </Routes>
+      </div>
     </Router>
   );
 };

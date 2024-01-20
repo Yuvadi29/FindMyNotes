@@ -1,7 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const User = require("../Models/User");
-const jwt = require("jsonwebtoken"); //Sign Tokens
 const bcrypt = require("bcrypt"); //Hash passwords
 
 dotenv.config();
@@ -60,7 +59,7 @@ const login = async (req, res) => {
         if (user) {
             const passwordMatch = await bcrypt.compare(userPassword, user.userPassword);
             if (passwordMatch) {
-                return res.json({ status: "OK", getUser: true })
+                return res.json(user);
             } else {
                 return res.json({ status: "Error", getUser: false })
             }
