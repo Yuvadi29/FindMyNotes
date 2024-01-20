@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <section className="bg-unsplashBgImage relative flex h-heroSectionHeight items-center justify-center border border-black bg-cover bg-center py-16 text-white">
+    <section className="h-heightWithoutNavbar relative flex items-center justify-center border border-black bg-unsplashBgImage bg-cover bg-center py-16 text-white">
       <div className="absolute inset-0 bg-black bg-opacity-70" />
       <div className="z-10 mx-auto text-center">
         <h1 className="mb-4 text-4xl font-black uppercase leading-tight md:text-5xl lg:text-6xl">
