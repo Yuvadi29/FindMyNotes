@@ -13,12 +13,17 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserFiles = async () => {
-      const result = await axios.get("http://localhost:7000/notes/getFiles");
+      const result = await axios.get(`http://localhost:7000/notes/getFiles/${userId}`);
       console.log(result.data);
+      setUserFiles(result.data.data);
     }
 
     getUserFiles();
-  }, [userId])
+  }, [userId]);
+
+  const numberofUploads = userFiles.length;
+  const numberOfFiles = userFiles.reduce((count, file) => count + 1, 0);
+
 
   return (
     <div className="flex flex-col items-center justify-center border border-red-500 lg:h-heightWithoutNavbar lg:flex-row">
@@ -42,39 +47,38 @@ const Profile = () => {
             </p>
           </div>
           {/* counts */}
-          <div className="flex items-center justify-center gap-4">
-            <div className="grid h-[80px] w-[100px] place-content-center">
-              <p className="text-center text-[12px] font-bold">
-                No. of Uploads :
-              </p>
-              <p className="text-center text-5xl font-black"></p>
+            <div className="flex items-center justify-center gap-4">
+              <div className="grid h-[80px] w-[100px] place-content-center">
+                <p className="text-center text-[12px] font-bold">
+                  No. of Uploads :
+                </p>
+                <p className="text-center text-5xl font-black">{numberofUploads}</p>
+              </div>
+              <span className="h-[60px] w-[1px] bg-gray-400" />
+              <div className="grid h-[80px] w-[100px] place-content-center">
+                <p className="text-center text-[12px] font-bold">
+                  No. of Files :
+                </p>
+                <p className="text-center text-5xl font-black">{numberOfFiles}</p>
+              </div>
             </div>
-            <span className="h-[60px] w-[1px] bg-gray-400" />
-            <div className="grid h-[80px] w-[100px] place-content-center">
-              <p className="text-center text-[12px] font-bold">
-                No. of Files :
-              </p>
-              <p className="text-center text-5xl font-black">10</p>
-            </div>
-          </div>
         </div>
       </div>
       {/* section 2 */}
       <div className="h-auto w-full border-[3px] border-amber-500 p-5 lg:h-full lg:w-[60%]">
         <h1 className="mb-3 text-xl font-black">My Documents :</h1>
         <div className="grid grid-cols-1 gap-5 p-4 sm:grid-cols-2 md:grid-cols-3">
-          {Array(5)
-            .fill(true)
-            .map((item, i) => (
-              <a
-                href="https://www.africau.edu/images/default/sample.pdf"
-                className="mb-3 flex h-[35px] max-w-[250px] items-center justify-between gap-10 rounded-xl border border-black px-4"
-                target="_blank"
-              >
-                <p className=" font-semibold">Document Name</p>
-                <FaExternalLinkAlt />
-              </a>
-            ))}
+          {userFiles.map((file) => (
+            <a
+              href={`http://localhost:7000/files/${file.files}`}
+              key={file._id}
+              className="mb-3 flex h-[35px] max-w-[250px] items-center justify-between gap-10 rounded-xl border border-black px-4"
+              target="_blank"
+            >
+              <p className=" font-semibold">{file.fileName}</p>
+              <FaExternalLinkAlt />
+            </a>
+          ))}
         </div>
       </div>
     </div>

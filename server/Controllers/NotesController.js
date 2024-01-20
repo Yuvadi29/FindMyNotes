@@ -41,10 +41,6 @@ const uploadNote = async (req, res) => {
 
 const getNote = async (req, res) => {
     try {
-
-        const uploadedBy = req.body;
-        console.log(uploadedBy);
-
         await Notes.find({}).then(data => {
             res.send({ status: "ok", data: data });
         })
@@ -53,4 +49,18 @@ const getNote = async (req, res) => {
     }
 };
 
-module.exports = { uploadNote, getNote };
+const getNoteByID = async (req, res) => {
+    try {
+        const userID = req.params.id;
+        console.log(userID);
+
+        await Notes.find({ uploadedBy: userID }).then(data => {
+            res.send({ data: data });
+        })
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
+module.exports = { uploadNote, getNote, getNoteByID };

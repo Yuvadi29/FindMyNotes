@@ -19,5 +19,6 @@ const upload = multer({ storage: storage })
 // Upload Route
 router.post("/upload", upload.single("file"), NotesController.uploadNote);
 router.get("/getFiles", NotesController.getNote);
+router.get("/getFiles/:id", NotesController.getNoteByID);
 
 module.exports = router;
