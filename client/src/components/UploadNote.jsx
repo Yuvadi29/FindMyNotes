@@ -146,7 +146,7 @@ const UploadNote = () => {
 
             </form>
 
-            <div>
+            {/* <div>
                 <h4>Uploaded Files</h4>
                 {allFiles.length === 0
                     ? "No files uploaded yet."
@@ -156,7 +156,7 @@ const UploadNote = () => {
                             <button onClick={() => showPDF(data.files)}>Show PDF</button>
                         </>
                     ))}
-            </div>
+            </div> */}
         </div>
     )
 }
