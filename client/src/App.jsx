@@ -6,7 +6,6 @@ import About from './pages/About';
 import FAQ from './pages/FAQ';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
-import ForgotPassword from './pages/Forgot-Password';
 import Upload from './pages/Upload';
 import Profile from './pages/Profile';
 import Search from './pages/Search';
@@ -24,7 +23,6 @@ const App = () => {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {isAuthenticated ? (
             <>
