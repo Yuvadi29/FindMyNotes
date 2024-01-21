@@ -87,31 +87,8 @@ const SearchBar = () => {
               key={notes._id}
               className="w-full max-w-[300px] rounded-xl bg-[#374151] p-2 text-white shadow-lg"
             >
-              {/* <div className="border border-purple-500 p-4">
-                <h2 className="mb-2 text-2xl font-bold">{notes.fileName}</h2>
-                <h2 className="text-base">{notes.fileDescription}</h2>
-                <h2 className="mb-2 text-lg">Uploaded By: {username}</h2>
-              </div>
-              <button
-                className="rounded bg-red-400 px-4 py-2 font-bold text-white hover:bg-red-500"
-                onClick={() => showPDF(notes.files)}
-              >
-                Show Pdf
-              </button> */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center justify-center">
-                  <div className="w-[50px] overflow-hidden rounded-full">
-                    <img src="./sample-profile.avif" alt="" />
-                  </div>
-                  <div className="">
-                    <p className="text-base font-black">
-                      <span>{notes.firstName}</span>{" "}
-                      <span>{notes.lastName}</span>
-                    </p>
-                    <p className="-mt-1 text-xs font-light">
-                      @{notes.userName}
-                    </p>
-                  </div>
+                <div className="flex items-center justify-between">
                 </div>
                 <button
                   className="rounded-lg bg-[#2563eb] px-2 py-1 font-semibold text-white hover:bg-red-500"
