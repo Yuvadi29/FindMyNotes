@@ -11,7 +11,7 @@ export default {
     },
     extend: {
       spacing: {
-        heightWithoutNavbar: "calc(100vh - 60px)",
+        heightWithoutNavbar: "calc(100vh - 63px)",
       },
       backgroundImage: {
         unsplashBgImage: "url('/img/bgImg.jpg')",
