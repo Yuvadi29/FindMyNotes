@@ -76,11 +76,9 @@ const Login = () => {
 
         {/* Additional Buttons */}
         <div className="mt-4 flex justify-between items-center">
+          New to FindMyNotes?
           <Link to="/signup" className="text-sm text-primary-600 hover:underline">
-            Create an account
-          </Link>
-          <Link to="/forgot-password" className="text-sm text-gray-600 hover:underline">
-            Forgot password?
+            <span className='font-bold'>Create an account</span>
           </Link>
         </div>
       </div>

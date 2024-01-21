@@ -32,12 +32,12 @@ const Hero = () => {
             </>
           ) : (
             <>
-              <button className="mr-10 rounded-xl bg-white px-6 py-3 text-lg font-bold text-blue-500 hover:bg-gray-100">
+              <Link to="/login" className="mr-10 rounded-xl bg-white px-6 py-3 text-lg font-bold text-blue-500 hover:bg-gray-100">
                 Login
-              </button>
-              <button className="rounded-xl bg-white px-6 py-3 text-lg font-bold text-blue-500 hover:bg-gray-100">
+              </Link>
+              <Link to='/signup' className="rounded-xl bg-white px-6 py-3 text-lg font-bold text-blue-500 hover:bg-gray-100">
                 Signup
-              </button>
+              </Link>
             </>
           )}
         </div>
