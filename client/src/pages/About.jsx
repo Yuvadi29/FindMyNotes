@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="flex h-auto flex-col items-center justify-center border-4 md:border-blue-500 lg:h-screen lg:flex-row lg:border-purple-500 xl:border-green-500">
+    <div className="flex h-auto flex-col items-center justify-center lg:h-heightWithoutNavbar lg:flex-row">
       {/* main image */}
       <div className="flex h-full w-full items-center justify-center py-4">
         <img
@@ -15,7 +15,7 @@ const About = () => {
       <div className="flex h-full w-full items-center justify-center px-4">
         <div className="w-full max-w-[700px]">
           <div className="">
-            <h1 className="relative w-fit text-2xl font-bold before:absolute before:top-[90%] before:h-[3px] before:w-[60%] before:bg-[#2563eb] lg:text-4xl">
+            <h1 className="relative w-fit text-2xl font-bold before:absolute before:top-[90%] before:h-[3px] before:w-[60%] before:bg-[#2563eb] lg:text-4xl lg:before:top-full">
               About Us
             </h1>
             <p className="mt-1 text-[15px] lg:mt-3">
@@ -27,7 +27,7 @@ const About = () => {
             </p>
           </div>
           <div className="mt-4">
-            <h1 className="relative w-fit text-2xl  font-bold before:absolute before:top-[90%] before:h-[3px] before:w-[60%] before:bg-[#2563eb] lg:text-4xl">
+            <h1 className="relative w-fit text-2xl  font-bold before:absolute before:top-[90%] before:h-[3px] before:w-[60%] before:bg-[#2563eb] lg:text-4xl lg:before:top-full">
               Who We Are:
             </h1>
             <p className="mt-1 text-[15px] lg:mt-3">
@@ -40,7 +40,7 @@ const About = () => {
             </p>
           </div>
           <div className="mt-4">
-            <h1 className="relative w-fit text-2xl  font-bold before:absolute before:top-[90%] before:h-[3px] before:w-[60%] before:bg-[#2563eb] lg:text-4xl">
+            <h1 className="relative w-fit text-2xl  font-bold before:absolute before:top-[90%] before:h-[3px] before:w-[60%] before:bg-[#2563eb] lg:text-4xl lg:before:top-full">
               Our Mission:
             </h1>
             <p className="mt-1 text-[15px] lg:mt-3">
