@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaSearch } from "react-icons/fa";
 import { AiFillBulb } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUserData, setUserData } from "../Redux/slices/user-slice";
@@ -47,6 +47,9 @@ const Header = () => {
             </Link>
             {isAuthenticated ? ( // Conditionally render based on user sign-in status
               <>
+                <Link to="/search">
+                  <FaSearch fontSize={20} />
+                </Link>
                 <Link to="/upload">
                   <TbUpload fontSize={20} />
                 </Link>

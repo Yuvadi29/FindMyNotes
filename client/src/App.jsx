@@ -30,6 +30,7 @@ const App = () => {
             <>
               <Route path="/upload" element={<Upload />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/search" element={<Search />} />
             </>
           ) : (
             <>
@@ -38,7 +39,6 @@ const App = () => {
             </>
           )}
 
-          <Route path="/search" element={<Search />} />
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<FAQ />} />
         </Routes>

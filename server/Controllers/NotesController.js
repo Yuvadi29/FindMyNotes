@@ -41,9 +41,22 @@ const uploadNote = async (req, res) => {
 
 const getNote = async (req, res) => {
     try {
-        await Notes.find({}).then(data => {
-            res.send({ status: "ok", data: data });
-        })
+        const { title, tag } = req.query;
+        const query = {};
+
+        if (title) {
+            query.fileName = { $regex: title, $options: "i" };
+        };
+
+        if (tag) {
+            query.tag = { $regex: tag, $options: "i" };
+        }
+
+        const data = await Notes.find(query);
+        res.send({ data: data });
+        // await Notes.find({}).then(data => {
+        //     res.send({ status: "ok", data: data });
+        // })
     } catch (error) {
         console.log(error);
     }
