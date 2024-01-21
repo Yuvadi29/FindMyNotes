@@ -85,14 +85,14 @@ const SearchBar = () => {
           searchResults.map((notes) => (
             <div
               key={notes._id}
-              className="flex w-full max-w-[300px] flex-wrap-reverse items-center justify-between rounded-xl border-2 border-red-500 bg-[#374151] px-4 py-2 text-white shadow-lg"
+              className="flex w-full max-w-[300px] flex-wrap-reverse items-center justify-between rounded-xl bg-[#374151] px-3 py-2 text-white shadow-lg"
             >
               <p className="mt-2text-sm">
                 <span className="font-bold">File Name : </span>{" "}
                 <span>{notes.fileName}</span>
               </p>
               <button
-                className="rounded-lg bg-[#2563eb] px-2 py-1 font-semibold text-white hover:bg-red-500"
+                className="rounded-lg bg-[#2563eb] px-2 py-1 font-semibold text-white hover:bg-[#1558e7]"
                 onClick={() => showPDF(notes.files)}
               >
                 Show Pdf
