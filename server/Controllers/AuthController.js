@@ -2,22 +2,34 @@ const express = require("express");
 const dotenv = require("dotenv");
 const User = require("../Models/User");
 const bcrypt = require("bcrypt"); //Hash passwords
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
 
 dotenv.config();
 
 const router = express.Router(); //Create router to create router bundle
 
+const storage = multer.memoryStorage();
+var upload = multer({ storage: storage })
+
 // Signup Route
-// router.post("/signup", async (req, res) => {
 const signup = async (req, res) => {
     try {
 
         const { firstName, lastName, userBio, userEmail, userMobile, userName, userPassword } = req.body;
 
+
         const existingUser = await User.findOne({ userEmail });
         if (existingUser) {
             res.status(401).send("User Already Exists with this Email");
         }
+        // Check if a file was provided in the request
+        if (!req.file) {
+            return res.status(400).json({ error: "No profile image provided" });
+        }
+
+        const result = await cloudinary.uploader.upload(req.file.path);
+        console.log(result);
 
         const password = req.body.userPassword;
         const saltRounds = 10;
@@ -35,6 +47,7 @@ const signup = async (req, res) => {
             userMobile,
             userName,
             userPassword: encryptPassword,
+            profileImage: result.secure_url,
         });
 
 

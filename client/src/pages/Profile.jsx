@@ -31,7 +31,7 @@ const Profile = () => {
       <div className="flex w-full flex-col items-center justify-center border-[3px] border-green-500 py-4 lg:h-full lg:w-[40%]">
         <div className="grid h-[200px] w-[200px] place-content-center overflow-hidden rounded-full bg-gray-400 text-2xl font-black">
           {/* 200 x 200 */}
-          <img src="./sample-profile.avif" alt="" className="" />
+          <img src={user.profileImage} alt="" className="" />
         </div>
         {/* title - bio section  */}
         <div className="mx-10  max-w-[740px]">
@@ -47,21 +47,21 @@ const Profile = () => {
             </p>
           </div>
           {/* counts */}
-            <div className="flex items-center justify-center gap-4">
-              <div className="grid h-[80px] w-[100px] place-content-center">
-                <p className="text-center text-[12px] font-bold">
-                  No. of Uploads :
-                </p>
-                <p className="text-center text-5xl font-black">{numberofUploads}</p>
-              </div>
-              <span className="h-[60px] w-[1px] bg-gray-400" />
-              <div className="grid h-[80px] w-[100px] place-content-center">
-                <p className="text-center text-[12px] font-bold">
-                  No. of Files :
-                </p>
-                <p className="text-center text-5xl font-black">{numberOfFiles}</p>
-              </div>
+          <div className="flex items-center justify-center gap-4">
+            <div className="grid h-[80px] w-[100px] place-content-center">
+              <p className="text-center text-[12px] font-bold">
+                No. of Uploads :
+              </p>
+              <p className="text-center text-5xl font-black">{numberofUploads}</p>
             </div>
+            <span className="h-[60px] w-[1px] bg-gray-400" />
+            <div className="grid h-[80px] w-[100px] place-content-center">
+              <p className="text-center text-[12px] font-bold">
+                No. of Files :
+              </p>
+              <p className="text-center text-5xl font-black">{numberOfFiles}</p>
+            </div>
+          </div>
         </div>
       </div>
       {/* section 2 */}
