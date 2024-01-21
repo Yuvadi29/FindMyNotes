@@ -4,6 +4,7 @@ const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
 
 const authRoutes = require("./Routes/auth");
 const noteRoutes = require("./Routes/notes");
@@ -14,6 +15,12 @@ const PORT = 7000;
 dotenv.config();
 app.use(cors());
 app.use(bodyParser.json());
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+});
 
 // Multer configuration
 

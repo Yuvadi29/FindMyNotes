@@ -10,22 +10,27 @@ const SignUp = () => {
   const [userMobile, setUserMobile] = useState("");
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
   const registerUser = async (e) => {
     try {
       e.preventDefault();
 
-      const userData = {
-        firstName,
-        lastName,
-        userBio,
-        userEmail,
-        userMobile,
-        userName,
-        userPassword,
-      };
+      const formData = new FormData();
+      formData.append("firstName", firstName);
+      formData.append("lastName", lastName);
+      formData.append("userBio", userBio);
+      formData.append("userEmail", userEmail);
+      formData.append("userMobile", userMobile);
+      formData.append("userName", userName);
+      formData.append("userPassword", userPassword);
+      formData.append("profileImage", profileImage);
 
-      const result = await axios.post("http://localhost:7000/auth/signup", userData);
+      const result = await axios.post("http://localhost:7000/auth/signup", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
       console.log("Data: ", result);
       alert("User Entry Created in Database");
 
@@ -130,6 +135,39 @@ const SignUp = () => {
               required
               onChange={(e) => setUserPassword(e.target.value)}
             />
+          </div>
+
+          <div className="flex items-center justify-center w-full">
+            <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100  ">
+
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg className='w-8 h-8 mb-4 text-gray-500 ' aria-hidden="true" xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 20 16'
+                >
+                  <path stroke='currentColor' strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth="2"
+                    d='M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2 '
+                  />
+                </svg>
+                <p className="mb-2 text-sm text-gray-500">
+                  <span className="font-semibold">
+                    Click to Upload
+                  </span> or drag and drop
+                </p>
+                <p className="text-xs text-gray-500">PNG</p>
+                <input
+                  type="file"
+                  placeholder='File'
+                  accept='application/png'
+                  required
+                  id='dropzone-file'
+                  onChange={(e) => setProfileImage(e.target.files[0])}
+                  className='hidden'
+                />
+              </div>
+            </label>
           </div>
 
           <button
