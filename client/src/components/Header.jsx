@@ -30,7 +30,7 @@ const Header = () => {
         <div className="items-centers relative  flex h-[45px] w-28 justify-center overflow-hidden">
           <Link to="/">
             <img
-              src="https://findmynotes.pythonanywhere.com/static/media/images/logo.png"
+              src="/logo.png"
               alt="logo"
               className="absolute inset-0 m-auto w-full"
             />
