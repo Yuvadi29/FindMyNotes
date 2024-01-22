@@ -20,7 +20,7 @@ const SearchBar = () => {
           title: searchQuery,
         },
       });
-      console.log(notes);
+      // console.log(notes);
 
       if (notes.data.data.length > 0) {
         setSearchResults(notes.data.data);

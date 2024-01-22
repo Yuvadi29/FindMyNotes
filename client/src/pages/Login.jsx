@@ -22,16 +22,19 @@ const Login = () => {
 
       const result = await axios.post("http://localhost:7000/auth/login", user);
       console.log("User Logged In Successfully: ", result);
-      console.log(result.data);
+      // console.log(result.data);
 
 
       dispatch(setUserData(result.data));
-      alert("User Logged In Successfully");
+
+      window.alert("Logged In");
+
       navigate("/");
     } catch (error) {
       console.log("Error Logging in: ", error);
     }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">

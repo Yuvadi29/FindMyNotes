@@ -11,10 +11,10 @@ const Header = () => {
   const [isNavbarActive, setIsNavbarActive] = useState(false);
 
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  console.log(isAuthenticated);
+  // console.log(isAuthenticated);
 
   const user = useSelector((state) => state.user.userData);
-  console.log(user);
+  // console.log(user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
