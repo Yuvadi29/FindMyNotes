@@ -55,16 +55,16 @@ const FAQ = () => {
   const [isFaqSectionActive, setIsFaqSectionActive] = useState(false);
 
   return (
-    <div className="grid h-auto place-content-center border border-red-500 p-8 xl:h-heightWithoutNavbar">
-      <div className="mx-auto max-w-[1400px] border border-red-500 px-5 py-8">
+    <div className="grid h-auto place-content-center p-8 xl:h-heightWithoutNavbar">
+      <div className="mx-auto max-w-[1400px] px-5 py-8">
         <h2 className="mb-6 text-3xl font-black">Frequently Asked Questions</h2>
-        <div className="grid grid-cols-1 gap-6 border border-amber-500 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-b">
+            <div key={index} className="">
               <h3 className="mb-2 text-lg font-medium sm:text-xl">
                 {faq.question}
               </h3>
-              <p className="text-sm text-gray-700 sm:text-base ">
+              <p className="border-b pb-2 text-sm text-gray-700 sm:text-base">
                 {faq.answer}
               </p>
             </div>
