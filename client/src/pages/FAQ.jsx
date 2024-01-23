@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const FAQ = () => {
   const faqs = [
@@ -50,15 +50,13 @@ const FAQ = () => {
     },
   ];
 
-  const [isFaqSectionActive, setIsFaqSectionActive] = useState(false);
-
   return (
     <div className="grid h-auto place-content-center p-8 xl:h-heightWithoutNavbar">
       <div className="mx-auto max-w-[1400px] px-5 py-8">
         <h2 className="mb-6 text-3xl font-black">Frequently Asked Questions</h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {faqs.map((faq, index) => (
-            <div key={index} className="">
+            <div key={index}>
               <h3 className="mb-2 text-lg font-medium sm:text-xl">
                 {faq.question}
               </h3>
