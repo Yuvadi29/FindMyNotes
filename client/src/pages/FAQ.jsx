@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { CiSquarePlus } from "react-icons/ci";
-import { CiSquareMinus } from "react-icons/ci";
 
 const FAQ = () => {
   const faqs = [
