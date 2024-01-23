@@ -1,8 +1,10 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { setUserData } from '../Redux/slices/user-slice';
+import axios from "axios";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { setUserData } from "../Redux/slices/user-slice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,53 +19,61 @@ const Login = () => {
 
       const user = {
         userEmail,
-        userPassword
+        userPassword,
       };
 
       const result = await axios.post("http://localhost:7000/auth/login", user);
       console.log("User Logged In Successfully: ", result);
       // console.log(result.data);
 
-
       dispatch(setUserData(result.data));
 
-      window.alert("Logged In");
+      // window.alert("Logged In");
 
-      navigate("/");
+      toast("Wow so easy !");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     } catch (error) {
       console.log("Error Logging in: ", error);
     }
   };
 
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Login</h2>
+    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+        <h2 className="mb-6 text-2xl font-bold text-gray-800">Login</h2>
         <form className="space-y-4" onSubmit={handleLogin}>
           <div>
-            <label htmlFor="userEmail" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="userEmail"
+              className="block text-sm font-medium text-gray-600"
+            >
               Email
             </label>
             <input
               type="email"
               id="userEmail"
               name="userEmail"
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-primary-300 focus:border-primary-300"
+              className="focus:ring-primary-300 focus:border-primary-300 mt-1 w-full rounded-md border border-gray-300 p-2 focus:ring"
               placeholder="your.email@example.com"
               required
               onChange={(e) => setUserEmail(e.target.value)}
             />
           </div>
           <div>
-            <label htmlFor="userPassword" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="userPassword"
+              className="block text-sm font-medium text-gray-600"
+            >
               Password
             </label>
             <input
               type="password"
               id="userPassword"
               name="userPassword"
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-primary-300 focus:border-primary-300"
+              className="focus:ring-primary-300 focus:border-primary-300 mt-1 w-full rounded-md border border-gray-300 p-2 focus:ring"
               placeholder="********"
               required
               onChange={(e) => setUserPassword(e.target.value)}
@@ -71,17 +81,21 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:ring focus:ring-blue-300 focus:outline-none"
+            className="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300"
           >
             Log in
           </button>
+          <ToastContainer />
         </form>
 
         {/* Additional Buttons */}
-        <div className="mt-4 flex justify-between items-center">
+        <div className="mt-4 flex items-center justify-between">
           New to FindMyNotes?
-          <Link to="/signup" className="text-sm text-primary-600 hover:underline">
-            <span className='font-bold'>Create an account</span>
+          <Link
+            to="/signup"
+            className="text-primary-600 text-sm hover:underline"
+          >
+            <span className="font-bold">Create an account</span>
           </Link>
         </div>
       </div>
