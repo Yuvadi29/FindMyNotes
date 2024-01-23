@@ -31,10 +31,11 @@ const Login = () => {
       // window.alert("Logged In");
 
       toast("Wow so easy !");
+      navigate("/");
 
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
+      // setTimeout(() => {
+      //   navigate("/");
+      // }, 3000);
     } catch (error) {
       console.log("Error Logging in: ", error);
     }
