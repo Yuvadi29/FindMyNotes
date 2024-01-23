@@ -39,7 +39,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-start p-4">
+    <div className="flex min-h-heightWithoutNavbar flex-col items-center justify-start p-4">
       <div className="flex w-full items-center justify-center">
         <form onSubmit={handleSearch} className="w-full max-w-[700px]">
           <div className="relative">
