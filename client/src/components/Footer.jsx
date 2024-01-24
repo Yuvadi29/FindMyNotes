@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="flex items-center justify-center p-16">
@@ -20,16 +20,10 @@ const Footer = () => {
           </h2>
           <ul className="text-gray-600">
             <li className="mb-1">
-              <a href="/about">About</a>
+              <Link to="/about">About</Link>
             </li>
             <li className="mb-1">
-              <a href="/faq">FAQ</a>
-            </li>
-            <li className="mb-1">
-              <a href="/contact">Help</a>
-            </li>
-            <li className="mb-1">
-              <a href="/contact">Contact</a>
+              <Link to="/faq">FAQ</Link>
             </li>
           </ul>
         </div>
