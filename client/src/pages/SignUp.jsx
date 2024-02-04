@@ -10,6 +10,7 @@ const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [profileImage, setProfileImage] = useState("");
+  const [profilePreviewImage, setProfilePreviewImage] = useState("");
 
   const registerUser = async (e) => {
     try {
@@ -176,10 +177,10 @@ const SignUp = () => {
           <div className="flex w-full flex-col items-center justify-center">
             <div className="mb-4 grid h-[200px] w-[200px] place-content-center overflow-hidden rounded-full border-2 border-dashed border-gray-300 bg-gray-50 text-2xl font-black">
               {/* 200 x 200 */}
-              {profileImage == "" ? (
+              {profilePreviewImage == "" ? (
                 <p className="text-sm font-bold text-gray-500">Profile Image</p>
               ) : (
-                <img src={profileImage} alt="" className="" />
+                <img src={profilePreviewImage} alt="" className="" />
               )}
             </div>
             <label
@@ -213,8 +214,10 @@ const SignUp = () => {
                   accept="application/png"
                   required
                   id="dropzone-file"
-                  onChange={(e) =>
-                    setProfileImage(URL.createObjectURL(e.target.files[0]))
+                  onChange={(e) => {
+                    setProfilePreviewImage(URL.createObjectURL(e.target.files[0]))
+                    setProfileImage(e.target.files[0])
+                  }
                   }
                   className="hidden"
                 />
